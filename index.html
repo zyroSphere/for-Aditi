@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+    <style>
+        body {
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .center-container {
+            text-align: center;
+            margin-bottom: 5%;
+        }
+
+        .center-content {
+            display: inline-block;
+        }
+
+        .imgbear {
+            max-height: 400px;
+            max-width: 400px;
+            border-radius: 40px;
+        }
+
+        p {
+            font-size: 30px;
+        }
+
+        .button {
+            display: inline-block;
+            padding: 10px 20px;
+            font-size: 16px;
+            text-align: center;
+            text-decoration: none;
+            cursor: pointer;
+            border: 1px solid #333;
+            margin: 5px;
+            border-radius: 5px;
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        .button-no {
+            background-color: #f44336;
+        }
+    </style>
+    <title>Centered Div with Image</title>
+</head>
+<body>
+
+<div class="center-container">
+    <div class="center-content">
+        <img src="./cute-love-bear-roses-ou7zho5oosxnpo6k.gif" id="bearImage" alt="Centered Image" class="imgbear">
+        <p id="para">Will You be my Valentine's</p>
+        <button class="button" id="yesButton">Yes</button>
+        <button class="button button-no" id="noButton">No</button>
+    </div>
+</div>
+
+<script>
+    let counter = 0;
+    let accepted = false;
+
+    emailjs.init("user_your_public_key");  // Replace with your Email.js public key
+
+    document.getElementById("yesButton").addEventListener("click", function() {
+        document.getElementById("para").innerText = "Yay! Happy Valentine's Day! I'm waiting for 14th Febbb";
+        document.getElementById("bearImage").src = "./bear-kiss-bear-kisses.gif";
+        accepted = true;
+
+        // Send email when 'Yes' is clicked
+        sendEmail();
+    });
+
+    document.getElementById("noButton").addEventListener("click", function() {
+        if (accepted) {
+            document.getElementById("para").innerText = "You already accepted, can't go back. Stop pressing the button.";
+        } else {
+            document.getElementById("para").innerText = "Preety ".repeat(counter) + "Pleaseee";
+            counter++;
+        }
+    });
+
+    function sendEmail() {
+        emailjs.send("service_9vu9ndc","template_sifdodl", {
+            to_email: "kp0109977@gmail.com",  // Replace with your email address
+            message: "The user pressed 'Yes' on the Valentine's Day page."
+        }, "K_VhGkZ86eyX6jdKF");  // Replace with your Email.js private key
+    }
+</script>
+
+</body>
+</html>
